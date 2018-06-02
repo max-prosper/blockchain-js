@@ -14,7 +14,7 @@ describe("Wallet", () => {
 
     beforeEach(() => {
       sendAmount = 50;
-      recipient = "r4nd0m-Addr355";
+      recipient = "r4nd0m-4ddr355";
       transaction = wallet.createTransaction(recipient, sendAmount, tp);
     });
 
