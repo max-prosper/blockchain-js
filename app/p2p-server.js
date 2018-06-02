@@ -41,7 +41,7 @@ class P2pServer {
     this.sendChain(socket);
   }
 
-  messageHandler(socket, transactionPool) {
+  messageHandler(socket) {
     socket.on("message", message => {
       const data = JSON.parse(message);
       switch (data.type) {
@@ -51,9 +51,9 @@ class P2pServer {
         case MESSAGE_TYPES.transaction:
           this.transactionPool.updateOrAddTransaction(data.transaction);
           break;
-        case: MESSAGE_TYPES.clear_transactions:
-          this.transactionPool.clear()
-          break;  
+        case MESSAGE_TYPES.clear_transactions:
+          this.transactionPool.clear();
+          break;
       }
     });
   }
@@ -69,7 +69,10 @@ class P2pServer {
 
   sendTransaction(socket, transaction) {
     socket.send(
-      JSON.stringify({ type: MESSAGE_TYPES.transaction, transaction })
+      JSON.stringify({
+        type: MESSAGE_TYPES.transaction,
+        transaction
+      })
     );
   }
 
@@ -81,10 +84,14 @@ class P2pServer {
     this.sockets.forEach(socket => this.sendTransaction(socket, transaction));
   }
 
-  broadcastClearTransaction() {
-    this.socket.forEach(socket => socket.send(JSON.stringify({
-      type: MESSAGE_TYPES.clear_transactions
-    })))
+  broadcastClearTransactions() {
+    this.sockets.forEach(socket =>
+      socket.send(
+        JSON.stringify({
+          type: MESSAGE_TYPES.clear_transactions
+        })
+      )
+    );
   }
 }
 

@@ -1,5 +1,5 @@
 const Wallet = require("./index");
-const TransactionPool = require("./transaction.pool");
+const TransactionPool = require("./transaction-pool");
 
 describe("Wallet", () => {
   let wallet, tp;
