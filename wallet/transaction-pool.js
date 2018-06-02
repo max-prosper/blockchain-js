@@ -1,4 +1,4 @@
-const Transaction = require("../wallet/transaction");
+const Transaction = require("./transaction");
 
 class TransactionPool {
   constructor() {
@@ -20,7 +20,6 @@ class TransactionPool {
   }
 
   existingTransaction(address) {
-    console.log("#############", address)
     return this.transactions.find(t => t.input.address === address);
   }
 
