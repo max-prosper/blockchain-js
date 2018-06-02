@@ -19,7 +19,7 @@ class Wallet {
     return this.keyPair.sign(dataHash);
   }
 
-  createTransaction(recipient, amount, transactionPool) {
+  createTransaction(recipient, amount, blockchain, transactionPool) {
     if (amount > this.balance) {
       console.log(`Amount: ${amount} exceeds current balace: ${this.balance}`);
     }
